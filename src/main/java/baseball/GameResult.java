@@ -22,4 +22,9 @@ public class GameResult {
     public int getBallCount() {
         return this.ballCount;
     }
+
+    @Override
+    public String toString() {
+        return "GameResult [strikeCount=" + strikeCount + ", ballCount=" + ballCount + "]";
+    }
 }
