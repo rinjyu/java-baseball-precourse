@@ -1,6 +1,7 @@
 package nextstep.utils;
 
 import baseball.GameResult;
+import baseball.GameResultType;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -127,5 +128,20 @@ public class GameRule {
         }
 
         return 0;
+    }
+
+    /**
+     * 게임 결과 메시지
+     * @param strikeCount 스트라이크 건수
+     * @param ballCount 볼 건수
+     * @return 게임 결과 메시지
+     */
+    public static String gameResultMessage(int strikeCount, int ballCount) {
+        if (strikeCount == 0 && ballCount == 0) {
+            return GameResultType.NOTHING.getValue();
+        }
+
+        return ((strikeCount > 0) ? String.format("%s" + GameResultType.STRIKE.getValue(), strikeCount) : "")
+                + ((ballCount > 0) ? (strikeCount > 0 ? " " : "") + String.format("%s" + GameResultType.BALL.getValue(), ballCount) : "");
     }
 }
