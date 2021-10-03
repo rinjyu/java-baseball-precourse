@@ -144,4 +144,13 @@ public class GameRule {
         return ((strikeCount > 0) ? String.format("%s" + GameResultType.STRIKE.getValue(), strikeCount) : "")
                 + ((ballCount > 0) ? (strikeCount > 0 ? " " : "") + String.format("%s" + GameResultType.BALL.getValue(), ballCount) : "");
     }
+
+    /**
+     * 게임 종료 여부
+     * @param strikeCount 스트라이크 건수
+     * @return 게임 종료 여부(true / false)
+     */
+    public static boolean gameOver(int strikeCount) {
+        return strikeCount == MAX_LENGTH;
+    }
 }
