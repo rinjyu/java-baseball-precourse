@@ -1,5 +1,6 @@
 package nextstep.utils;
 
+import baseball.GameProcessType;
 import baseball.GameResult;
 import baseball.GameResultType;
 
@@ -152,5 +153,14 @@ public class GameRule {
      */
     public static boolean gameOver(int strikeCount) {
         return strikeCount == MAX_LENGTH;
+    }
+
+    /**
+     * 게임 종료, 재시작 입력 숫자 검증
+     * @param retry 재시작
+     * @return 유효한 게임 종료, 재시작 입력값인지의 여부(true / false)
+     */
+    public static boolean gameProcessType(int retry) {
+        return retry == GameProcessType.GAME_RETRY.getKey() || retry == GameProcessType.GAME_OVER.getKey();
     }
 }
