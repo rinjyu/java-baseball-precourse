@@ -58,11 +58,11 @@ public class GameRule {
     }
 
     /**
-     * 사람이 입력한 숫자 유효성 검사
+     * 사용자가 입력한 숫자 유효성 검사
      * @param number 유효성을 검사할 데이터
      * @return 유효한 숫자인지의 여부(true / false)
      */
-    public static boolean personInputNumberValid(String number) {
+    public static boolean userInputNumberValid(String number) {
         return numberLength(number) && numberPattern(number) && duplicateNumber(number.split(""));
     }
 
@@ -80,16 +80,16 @@ public class GameRule {
     /**
      * 힌트 생성하기 : 스트라이크, 볼 건수
      * @param computerNumbers 컴퓨터가 입력한 숫자들
-     * @param personNumbers 사람이 입력한 숫자들
+     * @param userNumbers 사용자가 입력한 숫자들
      * @return 스트라이크와 볼의 건수
      */
-    public static GameResult generateHint(String[] computerNumbers, String[] personNumbers) {
+    public static GameResult generateHint(String[] computerNumbers, String[] userNumbers) {
         int strikeCount = 0;
         int ballCount = 0;
 
-        for (int i = 0; i < personNumbers.length; i++) {
-            strikeCount += strikeCount(computerNumbers, personNumbers, i);
-            ballCount += ballCount(computerNumbers, personNumbers, i);
+        for (int i = 0; i < userNumbers.length; i++) {
+            strikeCount += strikeCount(computerNumbers, userNumbers, i);
+            ballCount += ballCount(computerNumbers, userNumbers, i);
         }
 
         return new GameResult(strikeCount, ballCount);
@@ -98,17 +98,17 @@ public class GameRule {
     /**
      * 스트라이크 건수
      * @param computerNumbers 컴퓨터가 입력한 숫자들
-     * @param personNumbers 사람이 입력한 숫자들
+     * @param userNumbers 사용자가 입력한 숫자들
      * @param currentIndex 현재 인덱스
      * @return 스트라이크 건수
      */
-    public static int strikeCount(String[] computerNumbers, String[] personNumbers, int currentIndex) {
-        if (Arrays.asList(computerNumbers).equals(Arrays.asList(personNumbers))) {
+    public static int strikeCount(String[] computerNumbers, String[] userNumbers, int currentIndex) {
+        if (Arrays.asList(computerNumbers).equals(Arrays.asList(userNumbers))) {
             return MAX_LENGTH;
         }
 
         String computerNumber = String.join("", computerNumbers);
-        if (computerNumber.indexOf(personNumbers[currentIndex]) == currentIndex) {
+        if (computerNumber.indexOf(userNumbers[currentIndex]) == currentIndex) {
             return 1;
         }
 
@@ -118,13 +118,13 @@ public class GameRule {
     /**
      * 볼 건수
      * @param computerNumbers 컴퓨터가 입력한 숫자들
-     * @param personNumbers 사람이 입력한 숫자들
+     * @param userNumbers 사용자가 입력한 숫자들
      * @param currentIndex 현재 인덱스
      * @return 볼 건수
      */
-    public static int ballCount(String[] computerNumbers, String[] personNumbers, int currentIndex) {
+    public static int ballCount(String[] computerNumbers, String[] userNumbers, int currentIndex) {
         String computerNumber = String.join("", computerNumbers);
-        if (computerNumber.contains(personNumbers[currentIndex]) && computerNumber.indexOf(personNumbers[currentIndex]) != currentIndex) {
+        if (computerNumber.contains(userNumbers[currentIndex]) && computerNumber.indexOf(userNumbers[currentIndex]) != currentIndex) {
             return 1;
         }
 

@@ -17,7 +17,7 @@ public class User {
 
     private void setNumber() {
         String number = Console.readLine();
-        while (!GameRule.personInputNumberValid(number)) {
+        while (!GameRule.userInputNumberValid(number)) {
             System.err.print("[ERROR] 잘못된 입력값입니다.\n숫자를 입력해주세요 : ");
             number = Console.readLine();
         }

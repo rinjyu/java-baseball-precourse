@@ -15,21 +15,21 @@ public class Application {
         int retry;
         do {
             System.out.print("숫자를 입력해주세요 : ");
-            String[] personNumbers = new User().getNumbers();
+            String[] userNumbers = new User().getNumbers();
             String[] computerNumbers = new Computer().getNumbers();
-            retry = getGameProcessType(computerNumbers, personNumbers);
+            retry = getGameProcessType(computerNumbers, userNumbers);
         } while (retry != GameProcessType.GAME_OVER.getKey());
     }
 
     /**
      * 게임 진행 상태
      * @param computerNumbers
-     * @param personNumbers
+     * @param userNumbers
      * @return
      */
-    public static int getGameProcessType(String[] computerNumbers, String[] personNumbers) {
+    public static int getGameProcessType(String[] computerNumbers, String[] userNumbers) {
         int retry = GameProcessType.GAME_RETRY.getKey();
-        GameResult gameResult = GameRule.generateHint(computerNumbers, personNumbers);
+        GameResult gameResult = GameRule.generateHint(computerNumbers, userNumbers);
         System.out.println(GameRule.gameResultMessage(gameResult.getStrikeCount(), gameResult.getBallCount()));
         if (GameRule.gameOver(gameResult.getStrikeCount())) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
