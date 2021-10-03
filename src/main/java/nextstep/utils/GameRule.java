@@ -108,10 +108,6 @@ public class GameRule {
      * @return 스트라이크 건수
      */
     public static int strikeCount(String[] computerNumbers, String[] userNumbers, int currentIndex) {
-        if (Arrays.asList(computerNumbers).equals(Arrays.asList(userNumbers))) {
-            return MAX_LENGTH;
-        }
-
         String computerNumber = String.join("", computerNumbers);
         if (computerNumber.indexOf(userNumbers[currentIndex]) == currentIndex) {
             return 1;
