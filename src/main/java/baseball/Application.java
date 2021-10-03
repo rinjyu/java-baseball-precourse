@@ -12,10 +12,13 @@ public class Application {
      * 게임 화면
      */
     public static void gameView() {
-        System.out.print("숫자를 입력해주세요 : ");
-        String[] personNumbers = new User().getNumbers();
-        String[] computerNumbers = new Computer().getNumbers();
-        int retry = getGameProcessType(computerNumbers, personNumbers);
+        int retry;
+        do {
+            System.out.print("숫자를 입력해주세요 : ");
+            String[] personNumbers = new User().getNumbers();
+            String[] computerNumbers = new Computer().getNumbers();
+            retry = getGameProcessType(computerNumbers, personNumbers);
+        } while (retry != GameProcessType.GAME_OVER.getKey());
     }
 
     /**
