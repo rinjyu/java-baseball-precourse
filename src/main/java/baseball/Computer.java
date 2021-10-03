@@ -3,6 +3,11 @@ package baseball;
 import nextstep.utils.GameRule;
 import nextstep.utils.Randoms;
 
+/**
+ * @author Choi InJoo <rinjyu@naver.com>
+ * @version 1.0
+ * @since 1.0
+ */
 public class Computer {
 
     private String[] numbers;

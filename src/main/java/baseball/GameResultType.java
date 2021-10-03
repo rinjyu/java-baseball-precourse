@@ -1,5 +1,10 @@
 package baseball;
 
+/**
+ * @author Choi InJoo <rinjyu@naver.com>
+ * @version 1.0
+ * @since 1.0
+ */
 public enum GameResultType {
 
     STRIKE("strike", "스트라이크"),

@@ -3,6 +3,11 @@ package baseball;
 import nextstep.utils.Console;
 import nextstep.utils.GameRule;
 
+/**
+ * @author Choi InJoo <rinjyu@naver.com>
+ * @version 1.0
+ * @since 1.0
+ */
 public class User {
 
     private String[] numbers;

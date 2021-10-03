@@ -9,6 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+/**
+ * @author Choi InJoo <rinjyu@naver.com>
+ * @version 1.0
+ * @since 1.0
+ */
 public class GameRule {
 
     public static int MAX_LENGTH = 3;
