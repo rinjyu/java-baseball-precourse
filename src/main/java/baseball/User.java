@@ -1,6 +1,7 @@
 package baseball;
 
 import nextstep.utils.Console;
+import nextstep.utils.GameRule;
 
 public class User {
 
@@ -16,6 +17,10 @@ public class User {
 
     private void setNumber() {
         String number = Console.readLine();
+        while (!GameRule.personInputNumberValid(number)) {
+            System.err.print("[ERROR] 잘못된 입력값입니다.\n숫자를 입력해주세요 : ");
+            number = Console.readLine();
+        }
         this.numbers = number.split("");
     }
 }
