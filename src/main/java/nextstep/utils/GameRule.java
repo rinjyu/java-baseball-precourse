@@ -165,4 +165,13 @@ public class GameRule {
     public static boolean gameProcessType(int retry) {
         return retry == GameProcessType.GAME_RETRY.getKey() || retry == GameProcessType.GAME_OVER.getKey();
     }
+
+    /**
+     * 게임 종료, 재시작 입력값 검증
+     * @param gameProcessType 게임 진행 유형
+     * @return 유효한 입력값인지의 여부(true / false)
+     */
+    public static boolean inputGameProcessTypeValid(String gameProcessType) {
+        return GameRule.numberPattern(gameProcessType) && GameRule.gameProcessType(Integer.parseInt(gameProcessType));
+    }
 }
