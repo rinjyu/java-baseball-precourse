@@ -48,8 +48,9 @@ public class GameRule {
     public static boolean duplicateNumber(String[] data) {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(data));
         data = hashSet.toArray(new String[0]);
+        if (!numberLength(String.join("", data))) return true;
 
-        return numberLength(String.join("", data));
+        return false;
     }
 
     /**
@@ -58,8 +59,9 @@ public class GameRule {
      * @return 중복된 숫자가 존재하는 지의 여부(true / false)
      */
     public static boolean duplicateNumber(String[] data, String number) {
-        Arrays.sort(data);
-        return Arrays.binarySearch(data, number) > -1;
+        String[] tempArray = data.clone();
+        Arrays.sort(tempArray);
+        return Arrays.binarySearch(tempArray, number) > -1;
     }
 
     /**
@@ -68,7 +70,7 @@ public class GameRule {
      * @return 유효한 숫자인지의 여부(true / false)
      */
     public static boolean userInputNumberValid(String number) {
-        return numberLength(number) && numberPattern(number) && duplicateNumber(number.split(""));
+        return numberLength(number) && numberPattern(number) && !duplicateNumber(number.split(""));
     }
 
     /**
@@ -78,8 +80,7 @@ public class GameRule {
      * @return 유효한 숫자인지의 여부(true / false)
      */
     public static boolean computerInputNumberValid(String[] data, String number) {
-        String[] tempArray = data.clone();
-        return duplicateNumber(tempArray, number);
+        return duplicateNumber(data, number);
     }
 
     /**
