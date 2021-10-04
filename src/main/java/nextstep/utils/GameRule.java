@@ -23,7 +23,7 @@ public class GameRule {
      * @param data 유효성을 검사할 데이터
      * @return 유효한 숫자길이인지의 여부(true / false)
      */
-    public static boolean numberLength(String data) {
+    public static boolean isValidNumberLength(String data) {
         if (Objects.isNull(data) || "".equals(data)) {
             return false;
         }
@@ -36,7 +36,7 @@ public class GameRule {
      * @param data 유효성을 검사할 데이터
      * @return 유효한 숫자 범위인지의 여부(true / false)
      */
-    public static boolean numberPattern (String data) {
+    public static boolean isValidNumberPattern (String data) {
         return Pattern.matches("^[1-9]*$", data);
     }
 
@@ -45,12 +45,10 @@ public class GameRule {
      * @param data 중복 검사할 데이터
      * @return 중복된 숫자가 존재하는 지의 여부(true / false)
      */
-    public static boolean duplicateNumber(String[] data) {
+    public static boolean isDuplicateNumber(String[] data) {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(data));
         data = hashSet.toArray(new String[0]);
-        if (!numberLength(String.join("", data))) return true;
-
-        return false;
+        return !isValidNumberLength(String.join("", data));
     }
 
     /**
@@ -58,7 +56,7 @@ public class GameRule {
      * @param data 중복 검사할 데이터
      * @return 중복된 숫자가 존재하는 지의 여부(true / false)
      */
-    public static boolean duplicateNumber(String[] data, String number) {
+    public static boolean isDuplicateNumber(String[] data, String number) {
         String[] tempArray = data.clone();
         Arrays.sort(tempArray);
         return Arrays.binarySearch(tempArray, number) > -1;
@@ -69,8 +67,8 @@ public class GameRule {
      * @param number 유효성을 검사할 데이터
      * @return 유효한 숫자인지의 여부(true / false)
      */
-    public static boolean userInputNumberValid(String number) {
-        return numberLength(number) && numberPattern(number) && !duplicateNumber(number.split(""));
+    public static boolean isUserInputNumberValid(String number) {
+        return isValidNumberLength(number) && isValidNumberPattern(number) && !isDuplicateNumber(number.split(""));
     }
 
     /**
@@ -79,8 +77,8 @@ public class GameRule {
      * @param number 유효성을 검사할 데이터
      * @return 유효한 숫자인지의 여부(true / false)
      */
-    public static boolean computerInputNumberValid(String[] data, String number) {
-        return duplicateNumber(data, number);
+    public static boolean isComputerInputNumberValid(String[] data, String number) {
+        return isDuplicateNumber(data, number);
     }
 
     /**
@@ -162,8 +160,8 @@ public class GameRule {
      * @param retry 재시작
      * @return 유효한 게임 종료, 재시작 입력값인지의 여부(true / false)
      */
-    public static boolean gameProcessType(int retry) {
-        return retry == GameProcessType.GAME_RETRY.getKey() || retry == GameProcessType.GAME_OVER.getKey();
+    public static boolean gameProcessType(String retry) {
+        return GameProcessType.GAME_RETRY.getKey().equals(retry) || GameProcessType.GAME_OVER.getKey().equals(retry);
     }
 
     /**
@@ -171,7 +169,7 @@ public class GameRule {
      * @param gameProcessType 게임 진행 유형
      * @return 유효한 입력값인지의 여부(true / false)
      */
-    public static boolean inputGameProcessTypeValid(String gameProcessType) {
-        return GameRule.numberPattern(gameProcessType) && GameRule.gameProcessType(Integer.parseInt(gameProcessType));
+    public static boolean isInputGameProcessTypeValid(String gameProcessType) {
+        return GameRule.isValidNumberPattern(gameProcessType) && GameRule.gameProcessType(gameProcessType);
     }
 }

@@ -7,19 +7,19 @@ package baseball;
  */
 public enum GameProcessType {
 
-    GAME_RETRY(1, "게임 재시작"),
-    GAME_OVER(2, "게임 종료");
+    GAME_RETRY("1", "게임 재시작"),
+    GAME_OVER("2", "게임 종료");
 
-    final private int key;
+    final private String key;
 
     final private String value;
 
-    private GameProcessType(int key, String value) {
+    GameProcessType(String key, String value) {
         this.key = key;
         this.value = value;
     }
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 

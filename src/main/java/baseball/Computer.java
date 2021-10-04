@@ -3,6 +3,9 @@ package baseball;
 import nextstep.utils.GameRule;
 import nextstep.utils.Randoms;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * @author Choi InJoo <rinjyu@naver.com>
  * @version 1.0
@@ -33,8 +36,13 @@ public class Computer {
         String number;
         do {
             number = String.valueOf(Randoms.pickNumberInRange(1, 9));
-        } while (GameRule.computerInputNumberValid(numberArray, number));
+        } while (GameRule.isComputerInputNumberValid(numberArray, number));
 
         return number;
+    }
+
+    @Override
+    public String toString() {
+        return "Computer [numbers=" + (!Objects.isNull(numbers)? Arrays.toString(numbers): "") + "]";
     }
 }
