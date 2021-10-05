@@ -15,7 +15,7 @@ public enum GameResultType {
 
     final private String value;
 
-    private GameResultType(String key, String value) {
+    GameResultType(String key, String value) {
         this.key = key;
         this.value = value;
     }
